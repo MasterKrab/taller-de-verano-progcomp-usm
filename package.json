@@ -9,8 +9,7 @@
     "astro": "astro",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
-    "format": "biome format .",
-    "format:check": "biome format --check ."
+    "format": "biome format . --write"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.12",
