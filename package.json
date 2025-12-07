@@ -15,8 +15,11 @@
     "@astrojs/mdx": "^4.3.12",
     "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.0",
+    "@cxa/astro-inline-svg": "^0.6.0",
     "@fontsource-variable/inclusive-sans": "^5.2.8",
+    "@iconify-json/material-symbols": "^1.2.49",
     "astro": "^5.16.4",
+    "astro-icon": "^1.1.5",
     "prettier": "^3.7.4",
     "prettier-plugin-astro": "^0.14.1",
     "sharp": "^0.34.3"

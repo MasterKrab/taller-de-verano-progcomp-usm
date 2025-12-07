@@ -5,7 +5,7 @@ import '@fontsource-variable/inclusive-sans'
 import '@styles/modern-normalize.css'
 import '@styles/global.css'
 
-
+import LoadThemeScript from '@components/theme/LoadThemeScript.astro'
 import { ClientRouter } from 'astro:transitions'
 import Footer from '@components/Footer.astro'
 import Header from '@components/Header.astro'
@@ -21,6 +21,7 @@ import Header from '@components/Header.astro'
     <slot name="head" />
     <meta name="generator" content={Astro.generator} />
     <ClientRouter />
+    <LoadThemeScript />
   </head>
   <body>
     <Header />

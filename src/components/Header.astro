@@ -1,4 +1,6 @@
 ---
+import ToggleTheme from '@components/theme/ToggleTheme.astro'
+
 const MENU_ITEMS = [
   { name: 'Inicio', href: '/' },
   { name: 'Noticias', href: '/noticias' },
@@ -33,6 +35,8 @@ const { pathname } = Astro.url
         }
       </ul>
     </nav>
+
+    <ToggleTheme />
   </div>
 </header>
 
@@ -49,9 +53,14 @@ const { pathname } = Astro.url
   }
 
   .header__inner {
+    display: flex;
     max-width: var(--max-page-width);
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .navigation {
+    margin-left: auto;
   }
 
   .menu {
@@ -61,7 +70,8 @@ const { pathname } = Astro.url
     justify-content: center;
     padding: 0;
     margin: 0;
-    font-size: 1.25rem;
+    line-height: 1.6;
+    font-size: 1.15rem;
     font-weight: bold;
   }
 

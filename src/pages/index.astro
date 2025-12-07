@@ -1,9 +1,11 @@
 ---
-import { Image } from 'astro:assets'
+import Svg from '@cxa/astro-inline-svg'
 import Posts from '@components/Posts.astro'
 import Layout from '@layouts/Layout.astro'
 
 import getPosts from '@utils/getPosts'
+
+import codingCatSVG from '@assets/icons/coding-cat.svg?raw'
 ---
 
 <Layout>
@@ -48,13 +50,14 @@ import getPosts from '@utils/getPosts'
         </ul>
       </div>
       <div class="information__right">
-        <Image
+        <Svg
           class="information__image"
+          raw={codingCatSVG}
+          aria-hidden="true"
           width={457}
           height={425}
-          src="/assets/icons/coding-cat.svg"
-          alt=""
         />
+
         <a
           class="information__link"
           href="https://forms.gle/5gsAb4GKePXbAzQG6"
@@ -118,10 +121,12 @@ import getPosts from '@utils/getPosts'
       grid-template-columns: 5fr 3fr;
     }
   }
-
   .information__image {
-    max-width: 25rem;
     width: 100%;
+    height: auto;
+  }
+
+  @media screen and (max-width: 48rem) {
   }
 
   .list {

@@ -1,6 +1,5 @@
 :root {
   --color-background: #fff;
-  --color-background-secondary: #222;
   --color-text: #222;
   --color-text-secondary: #fff;
   --color-primary: #3ebb4f;
@@ -14,6 +13,26 @@
   --primary-font: 'Inclusive Sans Variable', sans-serif;
 
   --max-page-width: 80rem;
+}
+:root.dark {
+  --color-background: #111;
+  --color-text: #e0e0e0;
+  --color-text-secondary: #d1d1d1;
+  --color-primary: #3ebb4f;
+  --color-secondary: #ff4c4c;
+  --color-background-pattern: rgba(255, 255, 255, 0.1);
+  --box-shadow: rgba(255, 255, 255, 0.05) 5px 5px 10px;
+}
+
+:root.high-contrast {
+  --color-background: #0a0a0a;
+  --color-background-secondary: #242424;
+  --color-text: #ffffff;
+  --color-text-secondary: #ffffff;
+  --color-primary: #4ce060;
+  --color-secondary: #ff6666;
+  --color-background-pattern: transparent;
+  --box-shadow: 0 0 0 2px #ffffff;
 }
 
 *,
@@ -42,6 +61,7 @@ body {
   font-family: var(--primary-font);
   background-color: var(--color-background);
   color: var(--color-text);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 body::before {
