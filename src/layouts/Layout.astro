@@ -9,7 +9,6 @@ import LoadThemeScript from '@components/theme/LoadThemeScript.astro'
 import { ClientRouter } from 'astro:transitions'
 import FloatingFocus from '@components/FloatingFocus.astro'
 import SkipToMainContent from '@components/SkipToMainContent.astro'
-import ToolTip from '@components/ToolTip.astro'
 
 import Metadata from '@components/Metadata.astro'
 import Header from '@components/Header.astro'
@@ -43,7 +42,6 @@ const { metadata = {} } = Astro.props as Props
     <ClientRouter />
     <LoadThemeScript />
     <FloatingFocus />
-    <ToolTip />
   </head>
   <body>
     <SkipToMainContent />

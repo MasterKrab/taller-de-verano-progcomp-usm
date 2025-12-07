@@ -50,9 +50,6 @@ importers:
       sharp:
         specifier: ^0.34.3
         version: 0.34.5
-      tippy.js:
-        specifier: ^6.3.7
-        version: 6.3.7
     devDependencies:
       '@biomejs/biome':
         specifier: ^2.3.8
