@@ -9,9 +9,25 @@ const MENU_ITEMS = [
 const { pathname } = Astro.url
 ---
 
+<script>
+  const init = () => {
+    const navigation = document.getElementById('navigation')!
+    const openMenu = document.getElementById('open-menu')!
+
+    openMenu.addEventListener('click', () => {
+      const isActive = openMenu.classList.toggle('open-menu--active')
+      navigation.classList.toggle('navigation--active', isActive)
+      openMenu.setAttribute('aria-checked', String(isActive))
+      document.body.classList.toggle('body-menu-active', isActive)
+    })
+  }
+
+  document.addEventListener('astro:page-load', init)
+</script>
+
 <header class="header">
   <div class="header__inner">
-    <nav class="navigation">
+    <nav class="navigation" id="navigation">
       <ul class="menu">
         {
           MENU_ITEMS.map((item) => (
@@ -37,6 +53,13 @@ const { pathname } = Astro.url
     </nav>
 
     <ToggleTheme />
+
+    <button
+      class="open-menu"
+      id="open-menu"
+      role="switch"
+      aria-checked="false"
+      aria-label="Menú de navegación"></button>
   </div>
 </header>
 
@@ -59,8 +82,75 @@ const { pathname } = Astro.url
     margin-right: auto;
   }
 
+  .open-menu {
+    box-sizing: content-box;
+    position: relative;
+    z-index: 10000;
+    display: none;
+    justify-self: end;
+    margin-left: 1rem;
+    width: 2rem;
+    height: 1.5rem;
+    border-top: 0.25rem solid var(--color-text-secondary);
+    order: 3;
+    transition: border-top-color 0.2s ease-in-out;
+  }
+
+  .open-menu::before,
+  .open-menu::after {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 0.2rem;
+    background-color: var(--color-text-secondary);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .open-menu::before {
+    position: absolute;
+    top: 0.5rem;
+  }
+
+  .open-menu::after {
+    position: absolute;
+    bottom: 0;
+  }
+
+  .open-menu--active {
+    border-top-color: transparent;
+  }
+
+  .open-menu--active::before {
+    transform: rotate(45deg);
+  }
+
+  .open-menu--active::after {
+    transform: translateY(-0.75rem) rotate(-45deg);
+  }
+
   .navigation {
     margin-left: auto;
+  }
+
+  @media screen and (max-width: 48rem) {
+    .navigation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: var(--color-primary);
+      width: 100vw;
+      height: 100vh;
+      transform: translateX(-200%);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .navigation--active {
+      transform: translateX(0);
+    }
+
+    .open-menu {
+      display: inline-block;
+    }
   }
 
   .menu {
@@ -73,6 +163,16 @@ const { pathname } = Astro.url
     line-height: 1.6;
     font-size: 1.15rem;
     font-weight: bold;
+  }
+
+  @media screen and (max-width: 48rem) {
+    .menu {
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+      font-size: 2rem;
+      height: 100%;
+    }
   }
 
   @media screen and (min-width: 48rem) {
