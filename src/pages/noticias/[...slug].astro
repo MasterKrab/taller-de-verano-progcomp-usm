@@ -68,8 +68,19 @@ const { Content } = await render(post)
     font-size: 2.5rem;
   }
 
+  @media screen and (max-width: 40rem) {
+    .content :global(h2) {
+      font-size: 1.5rem;
+    }
+  }
+
   .content :global(h3) {
     font-size: 2rem;
+  }
+  @media screen and (max-width: 40rem) {
+    .content :global(h3) {
+      font-size: 1.25rem;
+    }
   }
 
   .content :global(h2),
