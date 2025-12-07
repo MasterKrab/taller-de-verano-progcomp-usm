@@ -58,6 +58,43 @@ const { title, description, publicationDate, updatedDate, heroImage, content } =
   </article>
 </Layout>
 
+<script>
+  const imagesToObserve = document.querySelectorAll('.post img')
+
+  if (imagesToObserve.length > 0) {
+    const loadZoom = async () => {
+      try {
+        const mediumZoom = (await import('medium-zoom')).default
+
+        mediumZoom('.post img', {
+          margin: 40,
+          background: 'rgba(0,0,0,0.8)',
+          scrollOffset: 40,
+        })
+      } catch (error) {
+        console.error('Error al cargar medium-zoom:', error)
+      }
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue
+          loadZoom()
+          observer.disconnect()
+          break
+        }
+      },
+      {
+        rootMargin: '200px 0px',
+        threshold: 0.1,
+      },
+    )
+
+    imagesToObserve.forEach((image) => observer.observe(image))
+  }
+</script>
+
 <style>
   .post {
     display: flex;
@@ -81,8 +118,6 @@ const { title, description, publicationDate, updatedDate, heroImage, content } =
     width: 100%;
     height: auto;
     object-fit: cover;
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
   }
 
   .post__title {
