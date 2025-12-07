@@ -1,7 +1,7 @@
 :root {
   --color-background: #fff;
   --color-text: #222;
-  --color-text-secondary: #fff;
+  --color-text-secondary: #222;
   --color-primary: #3ebb4f;
   --color-secondary: #ff4c4c;
   --color-background-pattern: rgba(106, 126, 108, 0.2);
@@ -12,12 +12,13 @@
 
   --max-page-width: 80rem;
 }
+
 :root.dark {
   --color-background: #111;
   --color-text: #fff;
-  --color-text-secondary: #fff;
---color-primary: #4ddd61;
-  --color-secondary: #f15656;
+  --color-text-secondary: #222;
+  --color-primary: #3ebb4f;
+  --color-secondary: #ff4c4c;
   --color-background-pattern: rgba(106, 126, 108, 0.05);
   --box-shadow: rgba(255, 255, 255, 0.05) 5px 5px 10px;
 }
@@ -26,9 +27,9 @@
   --color-background: #0a0a0a;
   --color-background-secondary: #242424;
   --color-text: #fff;
-  --color-text-secondary: #fff;
---color-primary: #4ddd61;
-  --color-secondary: #ff8585;
+  --color-text-secondary: #000;
+  --color-primary: #4ddd61;
+  --color-secondary: #F76E5F;
   --color-background-pattern: transparent;
   --box-shadow: 0 0 0 2px #ffffff;
 }

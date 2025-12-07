@@ -1,0 +1,25 @@
+<a href="#main-content" class="link"> Saltar al contenido principal </a>
+
+<style>
+  .link {
+    --translation-distance: 9999999px;
+
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 1rem 1.5rem;
+    opacity: 0;
+    background-color: var(--color-secondary);
+    color: var(--color-text-secondary);
+    transform: translateX(calc(var(--translation-distance) * -1));
+    z-index: 1000000;
+    font-weight: bold;
+    font-size: 1.15rem;
+    border-radius: 0.5rem;
+  }
+
+  .link:focus {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
