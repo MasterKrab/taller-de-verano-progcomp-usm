@@ -17,6 +17,10 @@ import { THEMES_ITEMS } from '@constants/themes'
     root.classList.remove(...Object.values(THEMES))
     root.classList.add(theme)
     toggle.setAttribute('aria-label', `Cambiar a tema ${theme}`)
+    toggle.setAttribute(
+      'title',
+      THEMES_ITEMS.find((item) => item.name === theme)!.label,
+    )
 
     icons.forEach((icon) => icon.classList.remove('toggle__icon--show'))
 
@@ -50,14 +54,16 @@ import { THEMES_ITEMS } from '@constants/themes'
   document.addEventListener('astro:after-swap', init)
 </script>
 
-<button class="toggle" id="toggle-theme" type="button"
-  >{
+<button class="toggle" id="toggle-theme" type="button">
+  {
     THEMES_ITEMS.map(({ name, label, iconName }) => (
       <Icon
         class="toggle__icon"
         data-name={name}
         name={iconName}
         title={label}
+        data-tip={label}
+        data-tip-placement="left"
       />
     ))
   }
