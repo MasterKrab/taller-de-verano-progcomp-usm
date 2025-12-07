@@ -102,6 +102,13 @@ import logoUSM from '@assets/images/usm-logo.png'
   .list__item {
     display: grid;
     align-content: center;
+    width: fit-content;
+  }
+
+  @media screen and (min-width: 48rem) {
+    .list__item {
+      width: auto;
+    }
   }
 
   .list__image {
