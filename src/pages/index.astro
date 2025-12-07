@@ -1,49 +1,202 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { Image } from 'astro:assets'
+import Posts from '@components/Posts.astro'
+import Layout from '@layouts/Layout.astro'
+
+import getPosts from '@utils/getPosts'
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout>
+  <article class="article">
+    <h1 class="title">
+      Taller de Verano de <br />
+      <span class="highlight-primary">Programación Competitiva</span>
+    </h1>
+
+    <h2 class="subtitle">
+      <a
+        href="https://share.google/1rCDVTyNL2b8ppEUa"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        📍Universidad Técnica Federico Santa María, Sede San Joaquín
+      </a>
+    </h2>
+
+    <div class="information">
+      <div class="information__left">
+        <p>
+          Taller <strong class="highlight-primary">gratuito</strong> diseñado tanto
+          para principiantes que quieran aprender desde cero como para quienes busquen
+          preparar la <strong class="highlight-secondary"
+            >Olimpiada Chilena de Informática.</strong
+          >
+        </p>
+
+        <ul class="list">
+          <li class="list__item">
+            Las clases serán presenciales del 05 al 23 de enero de 2026
+          </li>
+          <li class="list__item">No necesitas experiencia previa</li>
+          <li class="list__item">No necesitas traer computador</li>
+          <li class="list__item">
+            Se proveerán colaciones básicas en la mañana
+          </li>
+          <li class="list__item">
+            Almuerzos a precio alumno USM en el casino de la universidad
+          </li>
+        </ul>
+      </div>
+      <div class="information__right">
+        <Image
+          class="information__image"
+          width={457}
+          height={425}
+          src="/assets/icons/coding-cat.svg"
+          alt=""
+        />
+        <a
+          class="information__link"
+          href="https://forms.gle/5gsAb4GKePXbAzQG6"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ¡Inscríbete aquí!
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <section class="lasts-posts">
+    <h2 class="lasts-posts__title">Últimas Noticias</h2>
+    <Posts posts={await getPosts(5)} showFirstPostLarge={true} />
+    <a class="lasts-posts__link" href="/noticias/">Ver todas las noticias</a>
+  </section>
+</Layout>
+
+<style>
+  .article {
+    display: grid;
+    gap: 1rem;
+  }
+  .title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  @media screen and (min-width: 48rem) {
+    .title {
+      font-size: 4rem;
+    }
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  .information {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 1rem;
+    text-align: left;
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  @media screen and (min-width: 48rem) {
+    .information {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media screen and (min-width: 60rem) {
+    .information {
+      grid-template-columns: 5fr 3fr;
+    }
+  }
+
+  .information__image {
+    max-width: 25rem;
+    width: 100%;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    list-style-type: '\1f449';
+    padding-left: 2rem;
+    font-size: 1rem;
+  }
+
+  @media screen and (min-width: 48rem) {
+    .list {
+      font-size: 1.5rem;
+    }
+  }
+
+  .list__item {
+    padding-left: 0.5rem;
+  }
+
+  .highlight-primary {
+    color: var(--color-primary);
+  }
+
+  .highlight-secondary {
+    color: var(--color-secondary);
+  }
+
+  .information__link {
+    display: block;
+    background-color: var(--color-secondary);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+    width: fit-content;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  @media screen and (min-width: 48rem) {
+    .information__link {
+      font-size: 2rem;
+    }
+  }
+
+  .information__link:hover {
+    transform: scale(1.05);
+  }
+
+  .lasts-posts__title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+  }
+
+  .lasts-posts__link {
+    display: block;
+    text-align: center;
+    margin: 2rem;
+    font-size: 1.25rem;
+    background-color: var(--color-primary);
+    width: fit-content;
+    padding: 1rem 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 0.5rem;
+  }
+</style>

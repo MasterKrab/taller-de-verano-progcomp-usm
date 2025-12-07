@@ -1,0 +1,102 @@
+---
+import { Picture } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
+import FormattedDate from '@components/FormattedDate.astro'
+import { POST_IMAGE_HEIGHT, POST_IMAGE_WIDTH } from '@constants/posts'
+import { getReadTimeText } from '@utils/readTime'
+import ContentsTable from '@components/ContentsTable.astro'
+import Layout from '@layouts/Layout.astro'
+
+type Props = CollectionEntry<'posts'>['data'] & {
+  content: string
+}
+
+const { title, description, publicationDate, updatedDate, heroImage, content } =
+  Astro.props
+---
+
+<Layout>
+  <article class="post">
+    {
+      heroImage && (
+        <Picture
+          class="post__hero-image"
+          src={heroImage}
+          alt={description || ''}
+          width={POST_IMAGE_WIDTH}
+          height={POST_IMAGE_HEIGHT}
+          formats={['avif', 'webp', 'png']}
+        />
+      )
+    }
+    <div class="post__content">
+      <h1 class="post__title">{title}</h1>
+      <ul class="post__details">
+        <li>
+          📅 Fecha: <FormattedDate date={publicationDate} />
+        </li>
+        {
+          updatedDate && (
+            <li>
+              🕒 Última actualización: <FormattedDate date={updatedDate} />
+            </li>
+          )
+        }
+        <li>
+          📖 Tiempo de lectura: {getReadTimeText(content)}
+        </li>
+      </ul>
+
+      <slot />
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .post {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--color-background);
+    max-width: 60rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 3rem;
+    box-shadow: var(--box-shadow);
+  }
+
+  .post__content {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-radius: 0.5rem;
+  }
+
+  .post__hero-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+
+  .post__title {
+    font-size: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .post__details {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 0.2rem solid var(--color-text);
+  }
+</style>

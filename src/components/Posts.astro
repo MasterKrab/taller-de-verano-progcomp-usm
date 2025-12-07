@@ -1,0 +1,126 @@
+---
+import { Picture } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
+import FormattedDate from '@components/FormattedDate.astro'
+import { POST_IMAGE_HEIGHT, POST_IMAGE_WIDTH } from '@constants/posts'
+
+interface Props {
+  showFirstPostLarge?: boolean
+  posts: CollectionEntry<'posts'>[]
+}
+
+const { posts, showFirstPostLarge = false } = Astro.props
+---
+
+<posts-list>
+  <ul class={showFirstPostLarge ? 'posts posts--first-large' : 'posts'}>
+    {posts.length === 0 && <li>No hay noticias aún.</li>}
+
+    {
+      posts.map((post) => (
+        <li class="post">
+          {post.data.heroImage && (
+            <Picture
+              class="post__image"
+              width={POST_IMAGE_WIDTH}
+              height={POST_IMAGE_HEIGHT}
+              src={post.data.heroImage}
+              alt=""
+              formats={['avif', 'webp', 'png']}
+            />
+          )}
+          <h4 class="title">
+            <a class="link" href={`/noticias/${post.id}/`}>
+              {post.data.title}
+            </a>
+          </h4>
+          <p class="date">
+            <FormattedDate date={post.data.publicationDate} />
+          </p>
+        </li>
+      ))
+    }
+  </ul>
+</posts-list>
+
+<script>
+  class PostsList extends HTMLElement {
+    constructor() {
+      super()
+
+      const items = this.querySelectorAll('.post')
+
+      items.forEach((item) => {
+        item.addEventListener('click', (e) => {
+          const link = item.querySelector('a')
+          if (!link || e.target === link) return
+          link.click()
+        })
+      })
+    }
+  }
+
+  if (!customElements.get('posts-list'))
+    customElements.define('posts-list', PostsList)
+</script>
+
+<style>
+  posts-list {
+    display: contents;
+  }
+
+  .posts {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding-left: 0;
+  }
+
+  @media screen and (min-width: 70rem) {
+    .posts--first-large .post:first-child {
+      grid-column: span 3;
+    }
+  }
+
+  .post {
+    position: relative;
+    border: 0.2rem solid transparent;
+    transition: border-color 0.1s;
+    background-color: var(--color-background);
+    box-shadow: var(--box-shadow);
+  }
+
+  .post:hover {
+    border-color: var(--color-primary);
+  }
+
+  .post__image {
+    width: 100%;
+    aspect-ratio: 720 / 360;
+    max-height: 360px;
+    object-fit: cover;
+  }
+
+  .title,
+  .date {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  @media screen and (min-width: 70rem) {
+    .posts--first-large .post__image {
+      height: auto;
+    }
+  }
+
+  .link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+</style>

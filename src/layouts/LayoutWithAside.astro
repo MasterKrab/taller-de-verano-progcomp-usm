@@ -1,0 +1,25 @@
+---
+import Layout from '@layouts/Layout.astro'
+---
+
+<Layout>
+  <aside class="aside">
+    <slot name="aside" />
+    <aside>
+      <slot />
+    </aside>
+  </aside>
+</Layout>
+
+<style>
+  body {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  @media screen and (min-width: 64rem) {
+    body {
+      grid-template-columns: 1fr minmax(auto, var(--max-page-width)) 1fr;
+    }
+  }c
+</style>

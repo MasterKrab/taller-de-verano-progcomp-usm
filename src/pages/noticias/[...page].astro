@@ -1,0 +1,101 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+import Posts from '@components/Posts.astro'
+import Layout from '@layouts/Layout.astro'
+
+import getPosts from '@utils/getPosts'
+
+import type { GetStaticPaths, Page } from 'astro'
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const POSTS_PER_PAGE = 9 // Prefer a multiple of 3 for better grid layout
+
+  const posts = await getPosts()
+
+  return paginate(posts, { pageSize: POSTS_PER_PAGE })
+}
+
+interface Props {
+  posts: CollectionEntry<'posts'>[]
+  page: Page<CollectionEntry<'posts'>>
+}
+
+const { page } = Astro.props
+
+const { data: posts, currentPage, lastPage, url } = page
+
+const existsPreviusPage = currentPage > 1
+const existsNextPage = currentPage < lastPage
+---
+
+<Layout>
+  <section class="section">
+    <h1 class="title">Noticias</h1>
+    <Posts posts={posts} />
+
+    {
+      (existsPreviusPage || existsNextPage) && (
+        <nav>
+          <ul class="pagination">
+            <li class="pagination__item" aria-hidden={!existsPreviusPage}>
+              <a class="pagination__link" href={url.prev}>
+                👈 Página Anterior
+              </a>
+            </li>
+
+            <li class="pagination__item" aria-hidden={!existsNextPage}>
+              <a class="pagination__link" href={url.next}>
+                Página Siguiente 👉
+              </a>
+            </li>
+          </ul>
+        </nav>
+      )
+    }
+  </section>
+</Layout>
+
+<style>
+  .title {
+    font-size: 3rem;
+    text-align: center;
+    color: var(--color-primary);
+  }
+
+  .pagination {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    gap: 1rem;
+  }
+
+  @media screen and (max-width: 40rem) {
+    .pagination {
+      justify-content: center;
+      font-size: 0.75rem;
+    }
+  }
+
+  .pagination__item {
+    padding: 0.75rem 1.5rem;
+    border: 0.2rem solid var(--color-primary);
+    border-radius: 0.5rem;
+  }
+
+  .pagination__item[aria-hidden='true'] {
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .pagination__link {
+    color: var(--color-primary);
+
+    text-decoration: none;
+    font-weight: bold;
+  }
+</style>

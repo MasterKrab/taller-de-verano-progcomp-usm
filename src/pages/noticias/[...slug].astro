@@ -1,0 +1,89 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content'
+import PostLayout from '@layouts/PostLayout.astro'
+import { normalizeHeadings } from '@utils/headings'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts')
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }))
+}
+type Props = CollectionEntry<'posts'>
+
+const post = Astro.props
+const { Content } = await render(post)
+---
+
+<PostLayout {...post.data} content={post.body || ''}>
+  <div class="content">
+    <Content />
+  </div>
+</PostLayout>
+
+<style>
+  .content :global(p) {
+    line-height: 1.6;
+    font-size: 1.125em;
+    margin-bottom: 1em;
+  }
+
+  .content :global(img) {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .content :global(pre) {
+    padding: 1em;
+    max-width: 100%;
+    overflow-x: auto;
+    border-radius: 0.5em;
+    margin-bottom: 1.5em;
+    scrollbar-color: var(--color-background) var(--color-text);
+  }
+
+  .content :global(blockquote) {
+    border-left: 0.3rem solid var(--color-primary);
+    padding-left: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    font-style: italic;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .content :global(a) {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  .content :global(a:hover) {
+    text-decoration: none;
+  }
+
+  .content :global(h2) {
+    font-size: 2.5rem;
+  }
+
+  .content :global(h3) {
+    font-size: 2rem;
+  }
+
+  .content :global(h2),
+  .content :global(h3),
+  .content :global(h4),
+  .content :global(h5),
+  .content :global(h6) {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .content :global(ul),
+  .content :global(ol) {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+</style>
