@@ -1,11 +1,11 @@
 ---
 import { Picture } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
+import ContentsTable from '@components/ContentsTable.astro'
 import FormattedDate from '@components/FormattedDate.astro'
 import { POST_IMAGE_HEIGHT, POST_IMAGE_WIDTH } from '@constants/posts'
-import { getReadTimeText } from '@utils/readTime'
-import ContentsTable from '@components/ContentsTable.astro'
 import Layout from '@layouts/Layout.astro'
+import { getReadTimeText } from '@utils/readTime'
 
 type Props = CollectionEntry<'posts'>['data'] & {
   content: string
