@@ -8,6 +8,6 @@ import icon from 'astro-icon'
 
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.SITE_URL,
+  site: import.meta.env.SITE_URL,
   integrations: [mdx(), sitemap(), icon()],
 })
