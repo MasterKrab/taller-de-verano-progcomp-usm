@@ -15,7 +15,14 @@ const { title, description, publicationDate, updatedDate, heroImage, content } =
   Astro.props
 ---
 
-<Layout>
+<Layout
+  metadata={{
+    title,
+    description,
+    date: publicationDate.toISOString(),
+    image: heroImage ? heroImage.src : undefined,
+  }}
+>
   <article class="post">
     {
       heroImage && (
