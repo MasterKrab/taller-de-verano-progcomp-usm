@@ -12,7 +12,7 @@ import logoUSM from '@assets/images/usm-logo.png'
       aria-label="Taller de Verano de Programación Competitiva"
     >
       <ul class="list">
-        <li>
+        <li class="list__item">
           <a
             href="https://www.usm.cl/"
             target="_blank"
@@ -29,7 +29,7 @@ import logoUSM from '@assets/images/usm-logo.png'
             />
           </a>
         </li>
-        <li>
+        <li class="list__item">
           <a
             href="https://progcomp.cl/"
             target="_blank"
@@ -95,8 +95,13 @@ import logoUSM from '@assets/images/usm-logo.png'
     margin: 0;
   }
 
+  .list__item {
+    display: grid;
+    align-content: center;
+  }
+
   .list__image {
-    width: auto;
+    width: 100%;
     padding: 0.5rem 1.5rem;
   }
 
