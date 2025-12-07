@@ -4,26 +4,14 @@
     "includes": ["src/**/*", "!!/.astro/**", "!!/dist/**", "!!/node_modules/**"]
   },
   "formatter": {
-    "enabled": true,
-    "indentStyle": "space",
-    "indentWidth": 2
+    "enabled": false
   },
   "javascript": {
     "formatter": {
-      "quoteStyle": "single",
-      "semicolons": "asNeeded",
-      "arrowParentheses": "always"
+      "enabled": false
     }
   },
-  "css": {
-    "formatter": {
-      "enabled": true,
-      "quoteStyle": "double"
-    },
-    "parser": {
-      "cssModules": true
-    }
-  },
+
   "overrides": [
     {
       "includes": ["**/*.{js,jsx,ts,tsx,json,astro,svelte,vue,css}"],

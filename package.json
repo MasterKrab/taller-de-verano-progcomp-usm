@@ -9,13 +9,16 @@
     "astro": "astro",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
-    "format": "biome format . --write"
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.12",
     "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.0",
+    "@fontsource-variable/inclusive-sans": "^5.2.8",
     "astro": "^5.16.4",
+    "prettier": "^3.7.4",
+    "prettier-plugin-astro": "^0.14.1",
     "sharp": "^0.34.3"
   },
   "devDependencies": {
