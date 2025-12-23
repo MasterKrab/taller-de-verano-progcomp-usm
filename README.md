@@ -1,62 +1,60 @@
-# Astro Starter Kit: Blog
+# Taller de Verano de Programación Competitiva - USM
 
-```sh
-pnpm create astro@latest -- --template blog
+Website for the USM Competitive Programming Summer Workshop.
+
+## Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- [pnpm](https://pnpm.io/) (v8 or higher)
+
+## Setup
+
+1. Install dependencies:
+```bash
+pnpm install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+2. Create a `.env` file in the root directory (if needed):
+```bash
+# Optional: Set your site URL for production
+SITE_URL=https://your-domain.com
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Development
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Start the development server:
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+```bash
+pnpm dev
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+The site will be available at `http://localhost:4321`
 
-## 🧞 Commands
+### Available Scripts
 
-All commands are run from the root of the project, from a terminal:
+- `pnpm dev` - Start the development server with hot reload
+- `pnpm build` - Build the site for production
+- `pnpm preview` - Preview the production build locally
+- `pnpm lint` - Check code quality with Biome
+- `pnpm lint:fix` - Fix linting issues automatically
+- `pnpm format` - Format code with Prettier
 
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `pnpm install`         | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
+## Deployment
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### Building for Production
 
-## Credit
+Build the static site:
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+```bash
+pnpm build
+```
+
+The output will be in the `dist/` directory.
+
+### Preview Production Build
+
+```bash
+pnpm preview
+```
+
