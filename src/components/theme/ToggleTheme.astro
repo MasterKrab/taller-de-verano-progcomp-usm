@@ -21,6 +21,10 @@ import { THEMES_ITEMS } from '@constants/themes'
       'title',
       THEMES_ITEMS.find((item) => item.name === theme)!.label,
     )
+    toggle.setAttribute(
+      'data-label',
+      THEMES_ITEMS.find((item) => item.name === theme)!.label,
+    )
 
     icons.forEach((icon) => icon.classList.remove('toggle__icon--show'))
 
@@ -45,6 +49,15 @@ import { THEMES_ITEMS } from '@constants/themes'
         : localStorage.setItem('theme', theme)
 
       updateTheme()
+
+      toggle.classList.remove('toggle--changed')
+
+      // Restart animation
+      toggle.style.animation = 'none'
+      toggle.offsetHeight
+      toggle.style.animation = null
+
+      toggle.classList.add('toggle--changed')
     })
 
     updateTheme()
@@ -70,13 +83,67 @@ import { THEMES_ITEMS } from '@constants/themes'
 <style>
   .toggle {
     position: relative;
-
     display: grid;
     place-content: center;
     margin-left: auto;
     width: 1.75rem;
     height: 1.75rem;
     color: var(--text-color);
+  }
+
+  .toggle--changed::before {
+    position: absolute;
+    content: attr(data-label);
+    top: 50%;
+    transform: translateY(-50%) translateX(-100%);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    width: max-content;
+    height: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    padding-left: 0.5rem;
+    border-bottom-left-radius: 0.25rem;
+    border-top-left-radius: 0.25rem;
+    z-index: 10;
+  }
+
+  .toggle--changed::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 12px solid var(--color-background);
+    border-bottom: 12px solid transparent;
+    border-top: 12px solid transparent;
+    z-index: 5;
+  }
+
+  .toggle--changed::before,
+  .toggle--changed::after {
+    animation: fade-in 2s forwards;
+    pointer-events: none;
+
+    left: -15px;
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+
+    90% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
   }
 
   .toggle__icon {
