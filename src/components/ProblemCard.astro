@@ -1,0 +1,68 @@
+---
+const { problem } = Astro.props
+const { Content } = await problem.render()
+---
+
+<article class="card">
+  <header class="card__header">
+    <h2>{problem.data.title}</h2>
+    <ul class="card__meta-tags">
+      <li class="card__meta-tag">⏱️ {problem.data.timeLimit}</li>
+      <li class="card__meta-tag">💾 {problem.data.memoryLimit}</li>
+    </ul>
+  </header>
+
+  <div class="card__content">
+    <Content />
+  </div>
+</article>
+
+<style>
+  .card {
+    background: var(--color-background);
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 2rem;
+  }
+
+  .card__header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 0.1rem solid var(--color-text);
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--color-text);
+  }
+
+  .card__meta-tags {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 0.85rem;
+  }
+
+  .card__meta-tag {
+    background: var(--color-primary);
+    font-weight: bold;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    color: var(--color-text-secondary);
+  }
+
+  .card__content {
+    padding: 0.5rem 1.5rem;
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+</style>

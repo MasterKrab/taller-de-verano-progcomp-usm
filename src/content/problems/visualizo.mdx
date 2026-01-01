@@ -1,0 +1,69 @@
+---
+title: "Visualizo IV"
+timeLimit: "1 segundo"
+memoryLimit: "256 megabytes"
+---
+import TestCase from './TestCase.astro';
+
+Alejandra tiene una gran pasión por recolectar cartas y disfruta guardar cada nueva adquisición en su colección. Además, le encanta hacer preguntas sobre su colección, especialmente sobre cuál fue la `i`-ésima carta que añadió.
+
+Como está muy ocupada buscando nuevas cartas, te pide ayuda para desarrollar un programa que le permita almacenar las cartas que posee y responder rápidamente a preguntas sobre cuál fue la `i`-ésima carta añadida.
+
+### Entrada
+La entrada del programa consiste en los siguientes elementos:
+
+* Un entero `n` (`1 ≤ n ≤ 10^5`), que indica la cantidad de cartas que Alejandra ha encontrado.
+* Una segunda línea con `n` enteros separados por espacios, donde cada entero representa el valor de una carta. El primer número de esta línea corresponde a la primera carta que Alejandra añadirá a su colección, el segundo al valor de la segunda carta, y así sucesivamente hasta la `n`-ésima carta. Cada carta tiene un valor comprendido entre `1` y `10^6`.
+* Una tercera línea con un entero `q` (`1 ≤ q ≤ 10^5`), que indica la cantidad de preguntas que Alejandra desea realizar sobre su colección.
+* Finalmente, le siguen `q` líneas, donde cada línea contiene un entero `i`, que representa la pregunta de Alejandra sobre cuál fue la `i`-ésima carta añadida a su colección. El valor de `i` puede ir entre `0` y `n - 1`.
+
+### Salida
+La salida debe consistir de `q` líneas, donde cada línea debe contener un entero, correspondiente al valor de la `i`-ésima carta.
+
+### Puntajes
+* **50 puntos:** `1 ≤ n ≤ 4`.
+* **50 puntos:** Sin restricciones adicionales.
+
+### Ejemplos
+
+<TestCase 
+input={`3
+3 3 3
+3
+0
+1
+2`} 
+output={`3
+3
+3`} 
+/>
+
+<TestCase 
+input={`4
+1 10 9 2
+1
+2`} 
+output={`9`} 
+/>
+
+<TestCase 
+input={`4
+3273 1237 231 1237
+2
+0
+3`} 
+output={`3273
+1237`} 
+/>
+
+<TestCase 
+input={`4
+1 2 1 2
+3
+0
+0
+0`} 
+output={`1
+1
+1`} 
+/>

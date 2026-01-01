@@ -1,0 +1,31 @@
+---
+title: "Calculadora"
+timeLimit: "1 segundo"
+memoryLimit: "256 megabytes"
+---
+import TestCase from './TestCase.astro';
+
+Llegaste a la final de las Olimpiadas de Calculadoras Increíbles (OCI) y tu tarea ahora es crear una calculadora que soporte las cuatro operaciones aritméticas básicas: adición, sustracción, multiplicación y división entera.
+
+### Entrada
+La primera línea de la entrada contiene un entero `x`, un caracter `op` y un entero `y`, separados por espacios. (`1 ≤ x, y ≤ 10^4`, `op` es `+`, `-`, `*` o `/`).
+
+### Salida
+La salida debe consistir en una línea con un entero: el resultado de la operación.
+
+### Puntajes
+* **50** puntos: La operación será `+` o `-`.
+* **50** puntos: Sin restricciones adicionales.
+
+### Ejemplos
+
+<TestCase input="5 + 12" output="17" />
+
+<TestCase input="12 - 5" output="7" />
+
+<TestCase input="7 * 4" output="28" />
+
+<TestCase input="18 / 3" output="6" />
+
+### Nota
+Nota que la división es entera, que es lo mismo que truncar el resultado de una división normal.

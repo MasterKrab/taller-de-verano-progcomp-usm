@@ -1,0 +1,36 @@
+---
+title: "Punto y las búsquedas"
+timeLimit: "1 segundo"
+memoryLimit: "256 megabytes"
+---
+import TestCase from './TestCase.astro';
+
+Punto tiene una lista de `N` números enteros ordenados de manera no decreciente. Recibirá `Q` consultas, cada una consistiendo en un número entero. Cada consulta consiste en que Punto necesita encontrar el índice de la **primera** ocurrencia del número de manera eficiente.
+
+### Entrada
+La primera línea contiene dos enteros `N` y `Q` (`1 ≤ N, Q ≤ 10^5`).
+
+La segunda línea contiene `N` enteros separados por espacios, cada entero con un valor entre `1` y `10^9`.
+
+Las siguientes `Q` líneas contienen cada una un entero entre `1` y `10^9`, representando una consulta.
+
+### Salida
+Para cada consulta (en el orden en que fueron recibidas), debe mostrar por pantalla una línea con un único entero: el índice de la primera ocurrencia del elemento consultado o -1 si no está presente en la lista. El valor del índice debe ser entre `1` y `N`.
+
+### Puntajes
+* Subtarea 1 (10 puntos): `1 ≤ N, Q ≤ 10`.
+* Subtarea 2 (20 puntos): `1 ≤ N ≤ 100`, `1 ≤ Q ≤ 1000`.
+* Subtarea 3 (70 puntos): `1 ≤ N, Q ≤ 10^5`.
+
+### Ejemplo
+
+<TestCase 
+input={`10 3
+1 2 3 3 3 4 6 8 10 10
+10
+5
+3`} 
+output={`9
+-1
+3`} 
+/>

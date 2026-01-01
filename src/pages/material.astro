@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content'
+
+import Layout from '@layouts/Layout.astro'
+import ProblemCard from '@components/ProblemCard.astro'
+
+const allProblems = await getCollection('problems')
+---
+
+<Layout>
+  <h1 class="title">Material de ejemplo</h1>
+
+  <p class="text">
+    Problemas de ejemplo a los que los estudiantes pueden enfrentarse durante el
+    taller. Cada problema incluye una descripción detallada, límites de tiempo y
+    memoria, así como casos de prueba para practicar. Cada problema deben
+    resolverlo usando el lenguaje de programación C++.
+  </p>
+
+  <div class="cards-column">
+    {allProblems.map((problem) => <ProblemCard problem={problem} />)}
+  </div>
+</Layout>
+
+<style>
+  .title {
+    font-size: 3rem;
+  }
+
+  .text {
+    font-size: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  :global(.test-case) {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media screen and (min-width: 48rem) {
+    :global(.test-case) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  :global(.test-case-input),
+  :global(.test-case-output) {
+    border: 0.15rem solid var(--color-primary);
+  }
+
+  :global(.test-case-input p),
+  :global(.test-case-output p) {
+    margin: 0;
+    padding: 0.25rem 0.5rem;
+    font-weight: bold;
+    border-bottom: 0.15rem solid var(--color-primary);
+  }
+
+  :global(.test-case-input pre),
+  :global(.test-case-output pre) {
+    margin: 0;
+    padding: 0.25rem 0.5rem;
+  }
+</style>
