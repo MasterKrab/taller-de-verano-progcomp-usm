@@ -10,4 +10,5 @@ import icon from 'astro-icon'
 export default defineConfig({
   site: import.meta.env.SITE_URL,
   integrations: [mdx(), sitemap(), icon()],
+  prefetch: true,
 })
