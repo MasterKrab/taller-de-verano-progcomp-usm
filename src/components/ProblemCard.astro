@@ -1,6 +1,8 @@
 ---
+import { render } from 'astro:content'
+
 const { problem } = Astro.props
-const { Content } = await problem.render()
+const { Content } = await render(problem)
 ---
 
 <article class="card">
