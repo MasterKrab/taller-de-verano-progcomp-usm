@@ -29,9 +29,14 @@ const { title, description, publicationDate, updatedDate, heroImage, content } =
           class="post__hero-image"
           src={heroImage}
           alt={description || ''}
+          formats={['avif', 'webp', 'png']}
           width={POST_IMAGE_WIDTH}
           height={POST_IMAGE_HEIGHT}
-          formats={['avif', 'webp', 'png']}
+          widths={[360, 540, 720, 960, 1920]}
+          sizes="(min-width: 960px) 960px, 100vw"
+          loading="eager"
+          decoding="sync"
+          fetchpriority="high"
         />
       )
     }
