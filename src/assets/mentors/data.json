@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Enzo Maximiliano Vivallo Flores",
+    "description": "Soy estudiante de Ingeniería Civil en Computación, me encanta programar proyectos propios y resolver problemas de algoritmos. Me gusta hacer bouldering y jugar videojuegos.",
+    "image": "enzo-maximiliano-vivallo-flores.jpg"
+  },
+  {
+    "name": "Felipe Santiago Parra Díaz",
+    "description": "Estudiante de Ingeniería Civil en Informática, empecé progcomp sabiendo apenas que era una lista y ahora me encanta C++. Llevo jugando Fortnite desde el 2017 y solo se hacer 90s.",
+    "image": "felipe-santiago-parra-diaz.png"
+  },
+  {
+    "name": "Javiera Ignacia León Salaberry",
+    "description": "Estudio Ingeniería Civil en computación. Entré a programación competitiva en mi 2do año de universidad de pura casualidad y me encantó todo este mundo. Además de eso, me encanta tejer a crochet y jugar juegos de ritmo.",
+    "image": "javiera-ignacia-leon-salaberry.png"
+  },
+  {
+    "name": "Victoria Paz Maldonado Soto",
+    "description": "Soy estudiante de Ingeniería Civil en Informática. Descubrí progcomp en mi 1er año de universidad gracias al taller básico de mi universidad, desde ahí me llamó mucho la atención. Me gusta mucho la música y dibujar.",
+    "image": "victoria-paz-maldonado-soto.png"
+  },
+  {
+    "name": "Vicente Ignacio Villarroel Halat",
+    "description": "Estudio Ingeniería Civil Matemática y me metí a programación competitiva en 2020 para resolver problemas de ingenio entretenidos y desafiantes. Me encantan los juegos de ritmo, Super Smash Bros. Melee y Tetris.",
+    "image": "vicente-ignacio-villarroel-halat.jpg"
+  },
+  {
+    "name": "Daniel Eloy Quispe Miguel",
+    "description": "Soy estudiante de Ingeniería Civil en informática, aprendí a programar en la universidad y me encantó, sobre todo resolver problemas eficientemente. El anime y la programación competitiva son mi vicio.",
+    "image": "daniel-eloy-quispe-miguel.jpg"
+  },
+  {
+    "name": "Rafael Andrés Baeza Marín",
+    "description": "Estudio Ingeniería Civil  en informática y comencé con programación competitiva en mi cuarto año de universidad. A parte de progcomp me gusta hacer calistenia y la música.",
+    "image": "rafael-andres-baeza-marin.jpg"
+  },
+  {
+    "name": "Sofía Muñoz Cordero",
+    "description": "Comencé en programación competitiva a los 14 años y hace 2 años soy tutora en tanto de progcomp como de robótica educativa. También soy voluntaria en distintas organizaciones STEM. Me gusta la acción social, resolver problemas, el K-pop y los completos.",
+    "image": "sofia-munoz.jpg"
+  },
+  {
+    "name": "Marcelo Lemus Henríquez",
+    "description": "Me gusta ver videos de speedruns de vez en cuando y aprender nuevas recetas de cocina, además me gustan los juegos indie, especialmente del genero rpg, metroidvania y novelas visuales.",
+    "image": "marcelo-lemus-henriquez.jpg"
+  }
+]

@@ -1,0 +1,109 @@
+---
+import { Picture } from 'astro:assets'
+
+import mentors from '@assets/mentors/data.json'
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/mentors/*.{jpeg,jpg,png,gif}',
+)
+
+const normalizedMentors = await Promise.all(
+  mentors.map(async (member) => {
+    const imageImporter = images[`/src/assets/mentors/${member.image}`]
+
+    if (!imageImporter) {
+      throw new Error(`Image not found:${member.image}`)
+    }
+
+    const image = await imageImporter()
+
+    return {
+      ...member,
+      image: image.default,
+    }
+  }),
+)
+
+normalizedMentors.sort((a, b) =>
+  a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }),
+)
+---
+
+<ul class="cards">
+  {
+    normalizedMentors.map((member, index) => {
+      const isMovedDown = index % 2 === 1
+
+      return (
+        <li class={`card ${isMovedDown ? 'card--moved-down' : ''}`}>
+          <Picture
+            class="card__image"
+            src={member.image}
+            alt={member.name}
+            formats={['avif', 'webp', 'png']}
+            widths={[200, 400]}
+            sizes="200px"
+          />
+
+          <div class="card__content">
+            <h3 class="card__title">{member.name}</h3>
+            <p class="card__description">{member.description}</p>
+          </div>
+        </li>
+      )
+    })
+  }
+</ul>
+
+<style>
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+    list-style-type: none;
+    padding: 0;
+  }
+
+  @media screen and (min-width: 75rem) {
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+      padding-bottom: 4rem;
+    }
+  }
+
+  .card {
+    display: grid;
+    grid-template-columns: 12.5rem 1fr;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    box-shadow: var(--box-shadow);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 75rem) {
+    .card--moved-down {
+      transform: translateY(3rem);
+    }
+  }
+
+  .card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card__content {
+    padding: 1rem 1.5rem;
+  }
+
+  .card__title {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card__description {
+    margin-top: 0;
+  }
+</style>
