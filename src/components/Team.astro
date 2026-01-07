@@ -58,11 +58,19 @@ normalizedMentors.sort((a, b) =>
 <style>
   .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-template-columns: 1fr;
     gap: 1.5rem;
     align-items: start;
     list-style-type: none;
     padding: 0;
+    text-align: center;
+  }
+
+  @media screen and (min-width: 30rem) {
+    .cards {
+      grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+      text-align: left;
+    }
   }
 
   @media screen and (min-width: 75rem) {
@@ -74,12 +82,18 @@ normalizedMentors.sort((a, b) =>
 
   .card {
     display: grid;
-    grid-template-columns: 12.5rem 1fr;
+    grid-template-columns: 1fr;
     background-color: var(--color-background);
     color: var(--color-text);
     box-shadow: var(--box-shadow);
     border-radius: 0.5rem;
     overflow: hidden;
+  }
+
+  @media screen and (min-width: 30rem) {
+    .card {
+      grid-template-columns: 12.5rem 1fr;
+    }
   }
 
   @media screen and (min-width: 75rem) {
@@ -92,6 +106,15 @@ normalizedMentors.sort((a, b) =>
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  @media screen and (max-width: 30rem) {
+    .card__image {
+      max-width: 15rem;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 50%;
+    }
   }
 
   .card__content {
