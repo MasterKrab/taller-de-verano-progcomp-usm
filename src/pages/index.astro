@@ -1,6 +1,7 @@
 ---
 import Svg from '@cxa/astro-inline-svg'
 import Posts from '@components/Posts.astro'
+import Team from '@components/Team.astro'
 import Layout from '@layouts/Layout.astro'
 
 import getPosts from '@utils/getPosts'
@@ -69,6 +70,11 @@ import codingCatSVG from '@assets/icons/coding-cat.svg?raw'
       </div>
     </div>
   </article>
+
+  <section class="team">
+    <h2 class="team__title">Nuestro Equipo</h2>
+    <Team />
+  </section>
 
   <section class="lasts-posts">
     <h2 class="lasts-posts__title">Últimas Noticias</h2>
@@ -203,5 +209,23 @@ import codingCatSVG from '@assets/icons/coding-cat.svg?raw'
     text-decoration: none;
     font-weight: bold;
     border-radius: 0.5rem;
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(4rem); /* Empieza 4rem más abajo */
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .team,
+  .lasts-posts {
+    animation: fade-in-up linear both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 30%;
   }
 </style>
